@@ -4,9 +4,10 @@ driver:
 
 provisioner:
   name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
+  log_level: info
+  chef_license: accept-no-persist
+  product_name: chef
+  product_version: 14.12.9
   always_update_cookbooks: true
 
 verifier:
@@ -14,7 +15,6 @@ verifier:
 
 platforms:
   - name: ubuntu-16.04
-  - name: centos-7
 
 suites:
   - name: default
@@ -24,3 +24,5 @@ suites:
       inspec_tests:
         - test/integration/default
     attributes:
+      chef_client:
+        chef_license: accept
